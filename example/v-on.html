@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>hello world</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+</body>
+<h1>v-on 事件监听 </h1>
+<hr>
+<div id="helloworld">
+    本场比赛的得分: <span v-text="count"></span>
+    <br>
+    <!-- v-on 还有一种简单的写法，就是用@代替。 -->
+    <button v-on:click="jf">➕</button>
+    <button @click="sf">➖</button>
+    <br>
+    <input type="text" v-on:keyup.enter="onError" v-model="secondCount">
+    <br>
+    <span v-text="secondCount"></span>
+</div>
+<script type="text/javascript">
+var helloworld = new Vue({
+    el: '#helloworld',
+    data: {
+        count: 0,
+        secondCount: 0,
+    },
+    methods: {
+        jf: function() {
+            this.count++;
+        },
+        sf: function() {
+            this.count--;
+        },
+        onError: function() {
+            // 因为文本框的数字会默认转变成字符串，所以我们需要用parseInt()函数进行整数转换。
+            this.count = this.count + parseInt(this.secondCount);
+        }
+    }
+});
+</script>
+
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "vuedemo",
+  "version": "1.0.0",
+  "description": "项目介绍: 1.为什么要创建assets这个文件夹,因为在服务器上该文件夹下面的文件默认是不会被编译的 2.index.html是创建一个字典 用于快速定位知识点 3.全局添加一个用于开发的临时服务器live-server(前提要安装node) 项目根目录下执行 live-server 启动服务 4.项目根目录下执行 npm init",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

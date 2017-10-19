@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>hello world</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+</body>
+<h1>v-for</h1>
+<hr>
+<div id="helloworld">
+    <ul>
+        <!-- 需要哪个标签循环就要将指令定位在哪个标签上 -->
+        <li v-for="item in sortItems">
+            {{item}}
+        </li>
+    </ul>
+    <hr>
+    <ul>
+        <li v-for="(student,index) in sortStudents">
+            {{index+1}}:{{student.name}}---{{student.age}}
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+var helloworld = new Vue({
+    el: '#helloworld',
+    data: {
+        items: [12, 23, 10, 43, 78, 98, 1, 22],
+        students: [
+            { name: "张三", age: 23 },
+            { name: "李四", age: 32 },
+            { name: "赵五", age: 29 }
+        ]
+    },
+    computed: {
+        sortItems: function() {
+            // 自定义排序规则
+            return this.items.sort(this.sortNum);
+        },
+        sortStudents: function() {
+            return this.sortByKey(this.students, "age");
+        }
+    },
+    methods: {
+        sortNum: function(a, b) {
+            return a - b;
+        },
+        sortByKey: function(objects, key) {
+            return objects.sort(function(a, b) {
+                var x = a[key],
+                    y = b[key];
+                return x < y ? -1 : x > y ? 1 : 0
+            });
+        }
+    }
+});
+</script>
+
+</html>

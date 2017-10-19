@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>hello world</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+</body>
+<h1>v-bind 是处理HTML中的标签属性的 </h1>
+<hr>
+<div id="helloworld">
+    <img v-bind:src="imgSrc" width="200px">
+    <!-- 另外一种写法(缩写) -->
+    <img :src="imgSrc" width="200px">
+    <hr>
+    <!-- 工作中我们经常使用v-bind来绑定css样式： -->
+</div>
+<script type="text/javascript">
+var helloworld = new Vue({
+    el: '#helloworld',
+    data: {
+        imgSrc: "/assets/img/cmk.jpg"
+    }
+});
+</script>
+
+</html>
