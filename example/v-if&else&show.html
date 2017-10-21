@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>v-if&else&show</title>
+	<script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<div v-if="isTrue"><p><span v-text="succes"></span></p></div>
+<div v-else><p><span v-html="error"></span></p></div><hr>
+<p>请输入true或者false来体验v-if和v-else? : <input  v-model="isTrue"><br>当前值: <span v-text="isTrue"></span></p>
+<hr>
+<p><span v-show="isShow">当前元素始终存在,只是display的属性值在black 和 node之间切换!</span></p>
+</div>
+<script type="text/javascript">
+var vm = new Vue({
+	el: "#app",
+	data: {
+		error:"<p>当前显示的是v-else的文本内容!</p>",
+		succes: "当前显示的是v-if的文本内容!",
+		isTrue: true,
+		isShow:true,
+	}
+});
+</script>
+</body>
+</html>

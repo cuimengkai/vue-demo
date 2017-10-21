@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>hello-vue</title>
+	<script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+	<span>
+		Vue 是一个基于数据-->驱动-->视图响应式前端UI框架.
+	</span>
+	<hr>
+	<div id="app">
+		{{message}}
+	</div>
+	<script type="text/javascript">
+	var vm = new Vue({
+		el: "#app",
+		data: {
+			message: "此处讲述的是,如何将vue中的数据绑定到页面上.常规的方式是使用\"{{}}\"来输出,但是这样存在一个弊端,当网速迟缓或者脚本出错被阻断之后\"{{}}\"就会直接打印在页面上,对于用户来说不友好."
+		}
+	});
+	</script>
+</body>
+</html>

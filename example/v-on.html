@@ -1,46 +1,57 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>hello world</title>
-    <script type="text/javascript" src="../assets/js/vue.js"></script>
+	<title>v-on</title>
+	<script type="text/javascript" src="../assets/js/vue.js"></script>
 </head>
-
 <body>
-</body>
-<h1>v-on 事件监听 </h1>
-<hr>
-<div id="helloworld">
-    本场比赛的得分: <span v-text="count"></span>
-    <br>
-    <!-- v-on 还有一种简单的写法，就是用@代替。 -->
-    <button v-on:click="jf">➕</button>
-    <button @click="sf">➖</button>
-    <br>
-    <input type="text" v-on:keyup.enter="onError" v-model="secondCount">
-    <br>
-    <span v-text="secondCount"></span>
+<div id="app">
+	<p v-html="messageHtml"></p>
+	<p><span>vue中事件的绑定常用的操作就是通过 v-on:click=fn 的形式来绑定事件,但是还有一种简写的形式就是 @click=fn 回车事件绑定的方式 v-on:keyup.enter=fn 在vue中获取指定DOM的方式是在元素上通过 ref=标识 来进行定位 在脚本中通过 this.$refs.标识 来获取</span></p>
+	<p><span v-text="messageText"></span>  :  <label v-text="formatCount"></label>    <input v-model="count" placeholder="购买数量" v-on:change="inputCount" ref="myinput"></p><br>
+	<button v-on:click="zj">＋</button><button @click="js">－</button>
 </div>
 <script type="text/javascript">
-var helloworld = new Vue({
-    el: '#helloworld',
-    data: {
-        count: 0,
-        secondCount: 0,
-    },
-    methods: {
-        jf: function() {
-            this.count++;
-        },
-        sf: function() {
-            this.count--;
-        },
-        onError: function() {
-            // 因为文本框的数字会默认转变成字符串，所以我们需要用parseInt()函数进行整数转换。
-            this.count = this.count + parseInt(this.secondCount);
-        }
-    }
+var vm = new Vue({
+	el: "#app",
+	data: {
+		min:0,
+		max:10,
+		messageHtml: '<span>v-on指令用于事假的绑定操作</span><hr>',
+		messageText: '购买数量',
+		count:0
+	},
+	computed:{
+		formatCount:function(){
+			if(this.count>this.max){
+				alert("限购数量为10！")
+				return this.count = this.max;
+			}else if(this.count <this.min){
+				alert("已经没有值了!");
+				return this.count = this.min;
+			}else{
+				return this.count;
+			}
+		}
+	},
+	methods:{
+		zj:function(){
+			this.count++;
+		},
+		js:function(){
+			this.count--;
+		},
+		inputCount:function(){
+			if(this.$refs.myinput.value.length<1){
+				this.count = 0;
+				return false;
+			}else{
+				this.formatCount
+			}
+			
+		}
+	}
 });
 </script>
-
+</body>
 </html>

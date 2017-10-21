@@ -1,62 +1,78 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>hello world</title>
-    <script type="text/javascript" src="../assets/js/vue.js"></script>
+	<title>v-for</title>
+	<script type="text/javascript" src="../assets/js/vue.js"></script>
 </head>
-
 <body>
-</body>
-<h1>v-for</h1>
+
+<div id="app">
+<p v-html="message"></p>
 <hr>
-<div id="helloworld">
-    <ul>
-        <!-- 需要哪个标签循环就要将指令定位在哪个标签上 -->
-        <li v-for="item in sortItems">
-            {{item}}
-        </li>
-    </ul>
-    <hr>
-    <ul>
-        <li v-for="(student,index) in sortStudents">
-            {{index+1}}:{{student.name}}---{{student.age}}
-        </li>
-    </ul>
+<p><span>遍历数组</span></p>
+<ul>
+	<li v-for="(item,index) in items_"><span v-text="item"></span></li>
+</ul>
+<span>
+	此处要特别说明一下 computed 计算属性这个特色,它的作用是 在数据被渲染到视图前对数据的操作.
+	method 定义方法的地方
+</span>
+<hr>
+<p><span>遍历数组</span></p>
+<ul>
+<li v-for="(obj,index) in objs"><em v-text="index+1"></em> : <span v-text="obj.name"></span>-------<label v-text="obj.app"></label></li>
+</ul>
+<button v-on:click="sortObj">升序</button>
+<button v-on:click="sortObj2">降序</button>
 </div>
 <script type="text/javascript">
-var helloworld = new Vue({
-    el: '#helloworld',
-    data: {
-        items: [12, 23, 10, 43, 78, 98, 1, 22],
-        students: [
-            { name: "张三", age: 23 },
-            { name: "李四", age: 32 },
-            { name: "赵五", age: 29 }
-        ]
-    },
-    computed: {
-        sortItems: function() {
-            // 自定义排序规则
-            return this.items.sort(this.sortNum);
-        },
-        sortStudents: function() {
-            return this.sortByKey(this.students, "age");
-        }
-    },
-    methods: {
-        sortNum: function(a, b) {
-            return a - b;
-        },
-        sortByKey: function(objects, key) {
-            return objects.sort(function(a, b) {
-                var x = a[key],
-                    y = b[key];
-                return x < y ? -1 : x > y ? 1 : 0
-            });
-        }
-    }
+var vm = new Vue({
+	el: "#app",
+	data: {
+		message:'<span>顾名思义,v-for指令 在vue中是用于迭代数组或者是对象属性常用的指令!</span>',
+		items:[21,31,11,41,5,9],
+		objs:[
+			{name:"Java",app:2},
+			{name:"Python",app:1},
+			{name:"Node",app:3}
+		]
+	},
+	computed:{
+		items_:function(){
+			return this.items.sort(this.itemSort);
+		}
+	},
+	methods:{
+		itemSort:function(a,b){
+			return a-b;
+		},
+		objSort:function(array,key){
+			 return array.sort(function(a,b){
+			      var x=a[key];
+			      var y=b[key];
+			      return ((x<y)?-1:((x>y)?1:0));
+			   });
+		},
+		objSort2:function(array,key){
+					 return array.sort(
+					 	/*
+					 	此处是根据指定的属性为对象数组进行排序
+					 	 */
+					 	function(a,b){
+					      var x=a[key];
+					      var y=b[key];
+					      return ((x>y)?-1:((x<y)?1:0));
+					   }
+					);
+				},
+		sortObj:function(){
+			this.objSort(this.objs,"app");
+		},
+		sortObj2:function(){
+			this.objSort2(this.objs,"app");
+		},
+	}
 });
 </script>
-
+</body>
 </html>

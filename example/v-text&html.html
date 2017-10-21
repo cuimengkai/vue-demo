@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>v-text&html</title>
+	<script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<span>v-text  && v-html</span>
+<hr>
+<div id="app">
+<p><span v-text="msgText"></span></p>
+<p><span v-html="msgHtml"></span></p>
+</div>
+<script type="text/javascript">
+var vm = new Vue({
+	el: "#app",
+	data: {
+		msgText:"v-text 用于将常规文本信息绑定输出到指定的元素上,当出现问题或者网络延迟的时候,显示空白,不会像\"{{}}\"一样直接打印出来",
+		msgHtml:'<textarea cols="40" rows="5" placeholder="v-html 指令用于将脚本中标签字符串渲染到绑定的元素上面,这是v-text所做不了的事情."></textarea>'
+	}
+});
+</script>
+</body>
+</html>
