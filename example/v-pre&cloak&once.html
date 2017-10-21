@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>v-pre&cloak&once</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p><span>我就是想原样输出的时候使用 v-pre 指令 vue不对此内容进行渲染操作</span></p>
+        <span v-pre>{{pre}}</span>
+        <hr>
+        <p><span>只用当页面加载完成才显示内容 就使用v-cloak指令</span></p>
+        <p><span v-cloak>页面完成后才会显示.</span></p>
+        <hr>
+        <p><span>v-once 指令用于第一次DOM渲染时候,渲染完成之后被视为静态内容,以后的渲染跳过此处的渲染</span></p>
+        <p>初始化:<span v-once v-text="message"></span></p>
+        <p><span>请输入:</span>
+            <input v-model="message">
+        </p>
+        <p>您输入的内容:<span v-text="message"></span></p>
+    </div>
+    <script type="text/javascript">
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            pre: "内容",
+            message: "hello vue"
+        }
+    });
+    </script>
+</body>
+
+</html>

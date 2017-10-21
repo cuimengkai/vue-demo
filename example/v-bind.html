@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>v-bind</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <style>
+    .classA {
+        color: red;
+    }
+
+    .classB {
+        color: #C0C0C0;
+    }
+
+    .classC {
+        font-size: 12px
+    }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p><span>v-bind指令通常用于处理Html中标签的属性</span></p>
+        <hr>
+        <p><span>v-bind指令用于将数据绑定到元素的属性上面,例如:v-bind:src,v-bind:width...
+            <br>v-bind:height的简写形式是:height</span></p>
+        <img v-bind:src="imgSrc" :style="style">
+        <a :href="google">Go Google</a>
+        <hr>
+        <p><span>工作中通常使用v-bind来绑定css样式,这样绑定的值必须在vue的data属性中进行声明</span></p>
+        <p><span :Class="className">使用v-bind指令绑定class样式:首先在style中创建一个class,因为v-bind绑定的值都需要在vue的data中声明,所以要先注册一下.</span></p>
+        <p><span :Class="isShow?classA:classB">v-bind使用三目运算来绑定class</span></p>
+        <p><span :Class="[classA,classC]">v-bind使用数组绑定多个class</span></p>
+        <p><span :Class="{classA:isShow}">v-bind通过判断来绑定class</span></p>
+        <p><span :style="{color:red}">v-bind 行间绑定style样式</span></p>
+    </div>
+    <script type="text/javascript">
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            imgSrc: "../assets/img/me.jpg",
+            style: {
+                width: "120px",
+                height: "160px"
+            },
+            google: "https://www.google.com.hk",
+            className: "classA",
+            classA: "classA",
+            classB: "classB",
+            classC: "classC",
+            red: "red",
+            isShow: false
+
+        }
+    });
+    </script>
+</body>
+
+</html>

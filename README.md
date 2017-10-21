@@ -7,3 +7,5 @@
 知识点:1.v-if&v-else 和 v-show的区别是啥?
 v-if： 判断是否加载，可以减轻服务器的压力，在需要时加载。
 v-show：调整css dispaly属性，可以使客户端操作更加流畅。
+5.项目启动
+live-server

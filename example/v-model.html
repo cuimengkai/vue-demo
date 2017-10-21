@@ -1,26 +1,67 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>v-model</title>
-	<script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>v-model</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
 </head>
+
 <body>
-<p><span>v-model 指令 就是数据的双向绑定 常用语表单的应用中</span></p><hr>
-<div id="app">
-<p><span v-text="message"></span>------<label v-text="message.length"></label></p>
-	<p>.lazy 用于懒加载: <span><input v-model.lazy="message"></span> 敲击回车的时候触发</p>
-	<p>.number 用于格式化数字: <span><input v-model.number="message"></span></p>
-	<p>.trim 用于去除前后空格: <span><input v-model.trim="message"></span></p>
-	<p><span>以上是v-model指令常用的三个属性</span></p>
-	<hr>
-</div>
-<script type="text/javascript">
-var vm= new Vue({
-	el: "#app",
-	data: {
-		message:''
-	}
-});
-</script>
+    <p><span>v-model 指令 就是数据的双向绑定 常用语表单的应用中</span></p>
+    <hr>
+    <div id="app">
+        <p><span v-text="message"></span>------
+            <label v-text="message.length"></label>
+        </p>
+        <p>.lazy 用于懒加载: <span><input v-model.lazy="message"></span> 敲击回车的时候触发</p>
+        <p>.number 用于格式化数字: <span><input v-model.number="message"></span></p>
+        <p>.trim 用于去除前后空格: <span><input v-model.trim="message"></span></p>
+        <p><span>以上是v-model指令常用的三个属性</span></p>
+        <hr>
+        <p><span>文本域的数据双向绑定</span></p>
+        <p><span v-text="textArea"></span></p>
+        <textarea rows="5" cols="50" v-model="textArea"></textarea>
+        <hr>
+        <p><span>单选按钮的使用</span></p>
+        <p><span>此处需要注意的是:单选框一定要设置value属性,用于与绑定的值进行比较,而id属性用与关联label标签的for属性</span></p>
+        <input type="radio" id="nan" value="男" v-model="sex">
+        <label for="nan">男</label>
+        <input type="radio" id="nv" value="女" v-model="sex">
+        <label for="nv">女</label>
+        <hr>
+        <p><span>多选框的使用</span></p>
+        <p><span>多选框的使用和单选框类似,只不过它绑定的是一个数组</span></p>
+        <input type="checkbox" id="java" value="Java" v-model="arrs">
+        <label for="java">Java</label>
+        <input type="checkbox" id="python" value="Python" v-model="arrs">
+        <label for="python">Python</label>
+        <input type="checkbox" id="node" value="Node" v-model="arrs">
+        <label for="node">Node</label>
+        <p>您选择的是: <span v-text="arrs"></span></p>
+        <hr>
+        <p><span>下拉框的使用</span></p>
+        <p><span>对于下拉框的使用是比较复杂的,首先要为select元素设置v-model来绑定一个默认选项,
+        然后为option元素设定需要迭代的数组,并且使用v-bind:value指令设置option的value值,此时option设置的值就已经和select的值关联起来了</span></p>
+        <select v-model="selected">
+            <option v-for="option in options" v-bind:value="option.id">
+                <p>{{option.name}}</p>
+            </option>
+        </select>
+        <p>选中元素的id: <span v-text="selected"></span></p>
+    </div>
+    <script type="text/javascript">
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            message: '',
+            textArea: '',
+            sex: '男',
+            arrs: ['Java'],
+            options: [{ name: "苹果", id: 1 }, { name: "鸭梨", id: 2 }, { name: "香蕉", id: 3 }, { name: "柚子", id: 4 }, { name: "橘子", id: 5 }],
+            selected: '2'
+        }
+    });
+    </script>
 </body>
+
 </html>
